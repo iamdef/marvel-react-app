@@ -1,0 +1,108 @@
+.animatedChar {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 300ms;
+}
+
+.animatedChar-enter {
+    opacity: 0;
+    transform: scale(1.1);
+}
+
+.animatedChar-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+    transition: all 300ms;
+}
+
+.animatedChar-enter-done {
+    opacity: 1;
+    visibility: visible;
+}
+
+.animatedChar-exit {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.animatedChar-exit-active {
+    opacity: 0;
+    transform: scale(0.9);
+    visibility: hidden;
+    transition: all 300ms;
+}
+
+/*  */
+
+.animatedChar_2 {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 600ms;
+}
+
+.animatedChar_2-enter {
+    opacity: 0;
+    transform: scale(1.1);
+}
+
+.animatedChar_2-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+    transition: all 600ms;
+}
+
+.animatedChar_2-enter-done {
+    opacity: 1;
+    visibility: visible;
+}
+
+.animatedChar_2-exit {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.animatedChar_2-exit-active {
+    opacity: 0;
+    transform: scale(0.9);
+    visibility: hidden;
+    transition: all 600ms;
+}
+
+/*  */
+
+.animatedChar_3 {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 900ms;
+}
+
+.animatedChar_3-enter {
+    opacity: 0;
+    transform: scale(1.1);
+}
+
+.animatedChar_3-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+    transition: all 900ms;
+}
+
+.animatedChar_3-enter-done {
+    opacity: 1;
+    visibility: visible;
+}
+
+.animatedChar_3-exit {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.animatedChar_3-exit-active {
+    opacity: 0;
+    transform: scale(0.9);
+    visibility: hidden;
+    transition: all 900ms;
+}
