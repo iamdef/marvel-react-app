@@ -2,7 +2,8 @@ import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 
-import useMarvelService from '../../services/MarvelService';
+// import useMarvelService from '../../services/MarvelService'; для запросов данных напрямую у Marvel
+import useMarvelServerService from '../../services/MarvelServerService'; // для запросов данных через промежуточный сервер
 import AppBanner from '../appBanner/AppBanner';
 import setContent from '../../utils/setContent';
 
@@ -12,7 +13,7 @@ const ItemPage = (props) => {
     const {itemType} = props;
     const {itemId} = useParams();
     const [item, setItem] = useState(null);
-    const {process, setProcess, getComic, getCharacter, clearError} = useMarvelService();
+    const {getComic, getCharacter, process, setProcess, clearError} = useMarvelServerService();
     let getItem;
 
     itemType === 'comic'

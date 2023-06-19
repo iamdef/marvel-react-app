@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import useMarvelService from '../../services/MarvelService';
+// import useMarvelService from '../../services/MarvelService'; для запросов данных напрямую у Marvel
+import useMarvelServerService from '../../services/MarvelServerService'; // для запросов данных через промежуточный сервер
 import setContent from '../../utils/setContent';
 
 import './charInfo.scss';
@@ -10,7 +11,7 @@ const CharInfo = (props) => {
 
     const [char, setChar] = useState(null);
 
-    const {process, getCharacter, clearError, setProcess} = useMarvelService();
+    const {getCharacter, process, clearError, setProcess} = useMarvelServerService();
 
     useEffect(() => {
         updateChar();

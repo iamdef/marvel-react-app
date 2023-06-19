@@ -2,6 +2,7 @@ import { useParams, NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import useMarvelService from '../../services/MarvelService';
+import useMarvelServerService from '../../services/MarvelServerService';
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import AppBanner from '../appBanner/AppBanner';
@@ -13,7 +14,8 @@ const SingleComic = () => {
 
     const {comicId} = useParams();
     const [comic, setComic] = useState(null);
-    const {loading, error, getComic, clearError} = useMarvelService();
+    const {loading, error, clearError} = useMarvelService();
+    const {getComic} = useMarvelServerService();
 
     useEffect(() => {
         onRequest(comicId);

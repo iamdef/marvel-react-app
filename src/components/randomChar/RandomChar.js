@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './randomChar.scss';
-import useMarvelService from '../../services/MarvelService';
+// import useMarvelService from '../../services/MarvelService'; для запросов данных напрямую у Marvel
+import useMarvelServerService from '../../services/MarvelServerService'; // для запросов данных через промежуточный сервер
 import mjolnir from '../../resources/img/mjolnir.png';
 import setContent from '../../utils/setContent';
 
@@ -8,7 +9,7 @@ import setContent from '../../utils/setContent';
 const RandomChar = () => {
 
     const [char, setChar] = useState({});
-    const {process, setProcess, getCharacter, clearError} = useMarvelService();
+    const {process, setProcess, getCharacter, clearError} = useMarvelServerService();
 
     useEffect(() => {
         updateChar();

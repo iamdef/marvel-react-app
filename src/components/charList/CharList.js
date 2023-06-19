@@ -3,8 +3,8 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import './charList.scss';
 import './transition.css';
-import useMarvelService from '../../services/MarvelService';
-import useMarvelServerService from '../../services/MarvelServerService';
+// import useMarvelService from '../../services/MarvelService'; для запросов данных напрямую у Marvel
+import useMarvelServerService from '../../services/MarvelServerService'; // для запросов данных через промежуточный сервер
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 
@@ -34,8 +34,7 @@ const CharList = (props) => {
     
     const duration = 500;
 
-    const {process, setProcess} =  useMarvelService();
-    const {getAllCharacters} = useMarvelServerService();
+    const {getAllCharacters, process, setProcess} = useMarvelServerService();
 
     useEffect(() => {
         onRequest(offset, true);

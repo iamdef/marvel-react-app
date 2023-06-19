@@ -4,7 +4,7 @@ const useMarvelServerService = () => {
 
     const {process, request, clearError, setProcess} = useHttp();
 
-    // функция приведения данных в удобный вид
+    // функции приведения данных в удобный вид
     const _transformCharacter = (char) => {
         return {
             id: char.id,
@@ -17,13 +17,65 @@ const useMarvelServerService = () => {
         }
     }
 
+    const prepareDesc = (desc) => {
+        return desc.replace('<ul><li>', '').replace('</li></ul>', '').replace('</li><li>', ' ').replace('&rsquo;', '`');
+    }
+
+    const _transformComics = (comics) => {
+        return {
+            id: comics.id,
+            title: comics.title,
+            description: comics.description
+            ? prepareDesc(comics.description)
+            : "There is no description",
+            thumbnail: comics.thumbnail.path + '.' + comics.thumbnail.extension,
+            price: comics.prices[0].price
+                ? `${comics.prices[0].price}$`
+                : 'NOT AVAILABLE',
+            language: comics.textObjects[0]?.language || "en-us",
+            pageCount: comics.pageCount
+				? `${comics.pageCount} p.`
+				: "No information about the number of pages",
+
+        }
+    }
+
+    // запрашиваем данные
 
     const getAllCharacters = async () => {
-        const res = await request('https://iamdef.ru/react-back/marvel-access.php');
+        const res = await request('https://iamdef.ru/react-back/marvel-access.php?object=allCharacters');
         return res.data.results.map(_transformCharacter);
     }
 
-    return {getAllCharacters};
+    const getCharacter = async (id) => {
+        const res = await request(`https://iamdef.ru/react-back/marvel-access.php?object=character&id=${id}`);
+		return _transformCharacter(res.data.results[0]);
+	};
+
+    const getCharacterByName = async (name) => {
+        const res = await request(`https://iamdef.ru/react-back/marvel-access.php?object=characterByName&name=${name}`);
+		return res.data.results.map(_transformCharacter);
+	};
+
+    const getAllComics = async () => {
+        const res = await request(`https://iamdef.ru/react-back/marvel-access.php?object=allComics`);
+        return res.data.results.map(_transformComics);
+    }
+
+    const getComic = async (id) => {
+        const res = await request(`https://iamdef.ru/react-back/marvel-access.php?object=comic&id=${id}`);
+        return _transformComics(res.data.results[0]);
+    }
+
+    return {getAllCharacters,
+            getCharacter,
+            getCharacterByName,
+            getAllComics,
+            getComic,
+            process,
+            clearError,
+            setProcess
+        };
 }
 
 export default useMarvelServerService;

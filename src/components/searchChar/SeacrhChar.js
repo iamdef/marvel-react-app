@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Formik, Field, ErrorMessage, Form } from 'formik';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
-import useMarvelService from '../../services/MarvelService';
+// import useMarvelService from '../../services/MarvelService'; для запросов данных напрямую у Marvel
+import useMarvelServerService from '../../services/MarvelServerService'; // для запросов данных через промежуточный сервер
 
 import './searchChar.scss';
 
@@ -10,7 +11,7 @@ const SearchChar = () => {
     const [char, setChar] = useState(null);
     const [seacrhError, setSearchError] = useState(false);
 
-    const {process, setProcess, getCharacterByName, clearError} = useMarvelService();
+    const {getCharacterByName, process, setProcess, clearError} = useMarvelServerService();
 
     const onRequest = (name) => {
         clearError();

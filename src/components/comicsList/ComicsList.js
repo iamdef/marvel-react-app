@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import useMarvelService from '../../services/MarvelService';
+// import useMarvelService from '../../services/MarvelService'; для запросов данных напрямую у Marvel
+import useMarvelServerService from '../../services/MarvelServerService'; // для запросов данных через промежуточный сервер
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import './comicsList.scss';
@@ -28,7 +29,8 @@ const ComicsList = () => {
     const [offset, setOffset] = useState(0);
     const [comicsEnded, setComicsEnded] = useState(false);
 
-    const {process, setProcess, getAllComics} = useMarvelService();
+    const {getAllComics, process, setProcess} = useMarvelServerService();
+
 
     useEffect(() => {
         onRequest(offset, true);
