@@ -13,12 +13,12 @@ const AppHeader = () => {
                 <ul>
                     <li><NavLink
                         end
-                        to="/"
+                        to="marvel-react-app/"
                         style={({isActive}) => ({color: isActive ? '#9f0013' : 'black'})}>
                         Characters</NavLink></li>
                     /
                     <li><NavLink
-                        to="/comics"
+                        to="marvel-react-app/comics"
                         style={({isActive}) => ({color: isActive ? '#9f0013' : 'black'})}>
                         Comics</NavLink></li>
                 </ul>
